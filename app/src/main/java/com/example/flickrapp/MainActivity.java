@@ -1,10 +1,14 @@
 package com.example.flickrapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Bind the layout elements
         Button buttonAuth = findViewById(R.id.buttonGetImage);
+        Button buttonListActivity = findViewById(R.id.buttonListActivity);
         ImageView imageView = findViewById(R.id.image);
 
         // Used to update the imageView from an other thread
@@ -26,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonListActivity.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent listActivity = new Intent(getApplicationContext(), ListActivity.class);
+                startActivity(listActivity);
+            }
+        });
 
     }
 }
