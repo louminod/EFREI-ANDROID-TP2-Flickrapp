@@ -56,6 +56,7 @@ public class AsyncFlickrJSONDataForList extends AsyncTask<String, Void, JSONObje
                 this.myAdapter.add(image);
                 Log.i("JFL", "Adding to adapter url : " + image);
             }
+            myAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
         }
