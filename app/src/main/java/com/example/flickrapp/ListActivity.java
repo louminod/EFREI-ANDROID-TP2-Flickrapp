@@ -16,7 +16,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        MyAdapter myAdapter = new MyAdapter();
+        MyAdapter myAdapter = new MyAdapter(this);
 
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(myAdapter);
