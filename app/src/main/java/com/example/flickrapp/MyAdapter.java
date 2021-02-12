@@ -1,13 +1,19 @@
 package com.example.flickrapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.ImageRequest;
 
 import java.util.Vector;
 
@@ -39,11 +45,26 @@ public class MyAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup parent) {
         String url = vector.elementAt(position);
 
+        /*
         if (view == null) {
             view = LayoutInflater.from(this.context).inflate(R.layout.textviewlayout, parent, false);
         }
         TextView textView = view.findViewById(R.id.textView);
-        textView.setText(url);
+        textView.setText(url);*/
+
+        if (view == null) {
+            view = LayoutInflater.from(this.context).inflate(R.layout.bitmaplayout, parent, false);
+        }
+        ImageView imageView = view.findViewById(R.id.imageView3);
+
+        RequestQueue queue = MySingleton.getInstance(this.context).getRequestQueue();
+        Response.Listener<Bitmap> repListener = response -> {
+            imageView.setImageBitmap(response);
+        };
+        ImageRequest request = new ImageRequest(url, repListener, view.getWidth(), 400, ImageView.ScaleType.CENTER, Bitmap.Config.RGB_565, null);
+
+        queue.add(request);
+
         return view;
     }
 
