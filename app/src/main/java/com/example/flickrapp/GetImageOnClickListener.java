@@ -27,6 +27,7 @@ public class GetImageOnClickListener implements View.OnClickListener {
         try {
             // Fetch flickr to get an image
             AsyncFlickrJSONData asyncTask = new AsyncFlickrJSONData();
+            //JSONObject json = asyncTask.execute("https://api.flickr.com/services/rest/?method=flickr.photos.search&license=4&has_geo=1&lat=48.856613&lon=2.352222&per_page=1&format=json").get();
             JSONObject json = asyncTask.execute("https://www.flickr.com/services/feeds/photos_public.gne?tags=trees&format=json").get();
 
             // Convert the image from the json to a String

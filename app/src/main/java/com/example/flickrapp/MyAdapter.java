@@ -21,6 +21,7 @@ public class MyAdapter extends BaseAdapter {
     private Vector<String> vector;
     private Context context;
 
+    // Constructor
     public MyAdapter(Context context) {
         this.vector = new Vector<>();
         this.context = context;
@@ -52,11 +53,15 @@ public class MyAdapter extends BaseAdapter {
         TextView textView = view.findViewById(R.id.textView);
         textView.setText(url);*/
 
+        // Get the view from the layouts
         if (view == null) {
             view = LayoutInflater.from(this.context).inflate(R.layout.bitmaplayout, parent, false);
         }
+
+        // Get the imageview
         ImageView imageView = view.findViewById(R.id.imageView3);
 
+        // Create the download queue
         RequestQueue queue = MySingleton.getInstance(this.context).getRequestQueue();
         Response.Listener<Bitmap> repListener = response -> {
             imageView.setImageBitmap(response);
